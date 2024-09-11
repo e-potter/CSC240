@@ -1,0 +1,65 @@
+public class Fraction implements Comparable<Fraction>
+{
+    private long top;
+    private long bottom;
+
+    public Fraction(long numerator, long denominator) {
+        top = numerator;
+        bottom = denominator;
+    }
+
+    @Override
+    public int hashCode() { return 17 * Long.hashCode(top) + Long.hashCode(bottom); }    
+    @Override
+    public boolean equals(Object o) { return compareTo((Fraction)o) == 0; }    
+    @Override
+    public int compareTo(Fraction f2){ return Long.compare(top * f2.bottom, f2.top * bottom); }
+    
+    // Your work here!
+
+    //Add two fractions
+    public Fraction add(Fraction f2) {
+      long ComDen = bottom * f2.bottom;
+      long Num1 = top * f2.bottom;
+      long Num2 = f2.top * bottom;
+      long Sum = Num1 + Num2;
+      
+      if (Sum != 0)
+      {
+        long Divisor = gcd(Math.abs(Sum),ComDen);
+        
+        Sum = Sum / Divisor;
+        ComDen = ComDen / Divisor;
+      }
+      
+      return new Fraction(Sum, ComDen);
+      
+    }
+        
+    private long gcd(long a, long b)
+    {
+      while (a != b)
+        if (a > b)
+          a = a - b;
+        else
+          b = b - a;
+          
+      return a;
+    }
+    
+    
+    public String toString()
+    {
+      String stringout;
+      if (top == 0)
+        stringout = "0";
+      else
+        if (bottom == 1)
+          stringout = top + "";
+        else
+          stringout = top + "/" + bottom;
+      return stringout;
+    }
+    
+    
+}

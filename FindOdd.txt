@@ -1,0 +1,24 @@
+public class FindOdd {
+    public static int findIt(int[] a) {
+      
+      int b = a.length;
+      int d = 0;
+      int i = 0;
+      int count = 0;
+      
+      while (d == 0)
+        {count = 0;
+         int c = a[i];
+          for (int j = 0;j < b; j++)
+            {if (a[j] == c)
+             {count++;}
+            }
+         d = count % 2;
+         i++;
+         }
+     
+        return a[i-1];
+    }
+}
+
+
