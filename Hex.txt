@@ -1,0 +1,123 @@
+public class Hex{
+
+        int DEC_NUM;
+        String STR_NUM;
+        public static char digits[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+  
+  public Hex(int value){
+    
+      DEC_NUM = value;
+      STR_NUM = "";
+  
+      int a = DEC_NUM;
+       int b;
+      
+      if (a ==0)
+          STR_NUM = "0";
+      else
+        {
+        while (a>0)
+         {
+         b = a % 16;
+         STR_NUM = digits[b] + STR_NUM;
+         a = a / 16;
+         } 
+        }
+  
+        STR_NUM = "0x" + STR_NUM;
+  }
+  
+
+    
+  public int valueOf(){
+      return DEC_NUM;
+  }
+  
+  public String toJSON(){     
+      return STR_NUM;
+   }
+  
+  public String toString(){
+      return STR_NUM;
+  }
+  
+  public Hex plus(Hex other){
+      int SUM2 = other.valueOf() + DEC_NUM;
+      return new Hex(SUM2);
+      
+  }
+  
+  public Hex minus(Hex other){
+      int DIFF2 = DEC_NUM - other.valueOf();
+      return new Hex(DIFF2);
+  }
+  
+  public Hex plus(int number){
+      int SUM1 = number + DEC_NUM;
+      return new Hex(SUM1);
+  }
+  
+  public Hex minus(int number ){
+      int DIFF1 = DEC_NUM - number;
+      return new Hex(DIFF1);
+  }
+  
+  public static int parse(String string){
+      int ANS = 0;
+      int FACT = 0;
+      char z = string.charAt(1);
+      
+    if (z == 'x')
+      {
+      int i = 2;
+      while (i<string.length())
+        {
+          char j = string.charAt(i);
+          for (int k=0;k<16;k++)
+            {
+              if (j == digits[k])
+                FACT = k;
+             }
+          ANS = ANS + FACT * ((int) Math.pow(16,string.length() - i - 1));
+          i++;
+         }
+      }
+
+      else
+      {
+      int i = 0;
+      while (i<string.length())
+        {
+          char j = string.charAt(i);
+          for (int k=0;k<16;k++)
+            {
+              if (j == digits[k])
+                FACT = k;
+             }
+          ANS = ANS + FACT * ((int) Math.pow(16,string.length() - i - 1));
+          i++;
+         }
+      }
+          
+    
+      return ANS;
+      
+     
+  }
+  
+  public boolean equals(Object object){
+      if (this == object) 
+          {    
+          return true;    
+          }    
+      if (object instanceof Hex) 
+          {    
+          Hex anotherHex = (Hex) object;    
+          int n = this.valueOf();    
+          if (n == anotherHex.valueOf())
+              return true;    
+          }       
+      return false;  
+  }
+  
+}
