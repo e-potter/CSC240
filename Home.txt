@@ -1,0 +1,128 @@
+//	Home.java		Author: Eric R Potter
+//
+//	Creates Home class.
+
+import java.text.NumberFormat;
+
+public class Home {
+	
+	private String firstName, lastName;
+	private double contents, dwelling, footage, liability, commission;
+	
+	
+	public Home()
+	{
+		firstName = " ";
+		lastName = " ";
+		contents = 0;
+		dwelling = 0;
+		liability = 0;
+		footage = 0;
+		
+	}
+	
+	public Home(String first, String last, double c, double d, double f, double l)
+	{
+		firstName = first;
+		lastName = last;
+		contents = c;
+		dwelling = d;
+		liability = l;
+		footage = f;
+		
+	}
+	
+	//setters
+	
+	public void setFirstName(String fn)
+	{
+			firstName = fn;
+	}
+	
+	public void setLastName(String ln)
+	{
+			lastName = ln;
+	}
+	
+	public void setContents(double co)
+	{
+			contents = co;
+	}
+	
+	public void setDwelling(double dw)
+	{
+			dwelling = dw;
+	}
+	
+	public void setLiability(double li)
+	{
+			liability = li;
+	}
+	
+	public void setFootage(double fo)
+	{
+			footage = fo;
+	}
+	
+	
+	
+	//getters
+	
+	public String getFirstName()
+	{
+			return firstName;
+	}
+	
+	public String getLastName()
+	{
+			return lastName;
+	}
+	
+	public double getContents()
+	{
+			return contents;
+	}
+	
+	public double getDwelling()
+	{
+			return dwelling;
+	}
+	
+	public double getLiability()
+	{
+			return liability;
+	}
+	
+	public double getFootage()
+	{
+			return footage;
+	}
+	
+	//tostring
+	
+	public String toString()
+	{
+	String result;
+	
+	NumberFormat fmt1 = NumberFormat.getCurrencyInstance();
+	
+	result = "\n\tHome Policy" + "\n\t";
+	result += "----------" + "\n\t";
+	result += "Name: " + firstName + " " + lastName + "\n\t";
+	result += "Footage: " + footage + "\n\t";
+	result += "Dwelling: " + fmt1.format(dwelling) + "\n\t";
+	result += "Liability: " + fmt1.format(liability) + "\n\t";
+	result += "Contents: " + fmt1.format(contents) + "\n\t";
+	result += "Commission: " + fmt1.format(commission) + "\n\t";
+	
+	return result;
+	}
+	
+	
+	//commission calculation
+	public void computeCommission()
+	{
+		commission = liability * 0.30 + (dwelling + contents) * 0.20;
+	}
+	
+}
