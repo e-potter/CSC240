@@ -1,0 +1,103 @@
+//	Life.java		Author: Eric R Potter
+//
+//	Creates Life class.
+
+import java.text.NumberFormat;
+
+public class Life {
+	
+	private String firstName, lastName;
+	private double term, commission;
+	private int age;
+	
+	
+	public Life()
+	{
+		firstName = " ";
+		lastName = " ";
+		age = 0;
+		term = 0;
+		
+	}
+	
+	public Life(String first, String last, int a, double t)
+	{
+		firstName = first;
+		lastName = last;
+		age = a;
+		term = t;
+		
+	}
+	
+	//setters
+	
+	public void setFirstName(String fn)
+	{
+			firstName = fn;
+	}
+	
+	public void setLastName(String ln)
+	{
+			lastName = ln;
+	}
+	
+	public void setAge(int ag)
+	{
+			age = ag;
+	}
+	
+	public void setTerm(double te)
+	{
+			term = te;
+	}
+	
+	
+	
+	//getters
+	
+	public String getFirstName()
+	{
+			return firstName;
+	}
+	
+	public String getLastName()
+	{
+			return lastName;
+	}
+	
+	public int getAge()
+	{
+			return age;
+	}
+	
+	public double getTerm()
+	{
+			return term;
+	}
+	
+	//tostring
+	
+	public String toString()
+	{
+	String result;
+	
+	NumberFormat fmt1 = NumberFormat.getCurrencyInstance();
+	
+	result = "\n\tLife Policy" + "\n\t";
+	result += "----------" + "\n\t";
+	result += "Name: " + firstName + " " + lastName + "\n\t";
+	result += "Age: " + age + "\n\t";
+	result += "Term: " + fmt1.format(term) + "\n\t";
+	result += "Commission: " + fmt1.format(commission) + "\n";
+	
+	return result;
+	}
+	
+	
+	//commission calculation
+	public void computeCommission()
+	{
+		commission = term * 0.20;
+	}
+	
+}

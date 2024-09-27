@@ -1,0 +1,135 @@
+//	CommissionCalculator.java		Author: Eric R Potter
+//
+//	Commission calculator class.
+
+import java.util.Scanner;
+
+public class CommissionCalculator {
+
+
+	
+	public CommissionCalculator()
+	{
+		Auto a1 = new Auto();
+		Home h1 = new Home();
+		Life l1 = new Life();
+		
+	}
+	
+	public void Run()
+	{
+		Scanner scan = new Scanner(System.in);
+		Auto a1 = new Auto();
+		Home h1 = new Home();
+		Life l1 = new Life();
+		
+		//Display choices
+		
+		int i = 0;
+		
+		while (i != 7)
+		{
+		System.out.print("\n\t--------------------------\n");
+		System.out.print("\tWelcome to Parkland Insurance: \n");
+		System.out.print("\t--------------------------\n");
+		System.out.print("\t\n");
+		System.out.print("\tEnter any of the following: \n");
+		System.out.print("\t\n");
+		System.out.print("\t1) Enter auto insurance policy information\n");
+		System.out.print("\t2) Enter home insurance policy information\n");
+		System.out.print("\t3) Enter life insurance policy information\n");
+		System.out.print("\t4) Compute commission and print auto policy\n");
+		System.out.print("\t5) Compute commission and print home policy\n");
+		System.out.print("\t6) Compute commission and print life policy\n");
+		System.out.print("\t7) Quit\n");
+		
+		i = scan.nextInt();
+		
+		//get input
+		
+		if (i == 1)
+		{
+			System.out.print("\tEnter first name of insured: ");
+			String fname = scan.next();
+			a1.setFirstName(fname);
+			System.out.print("\tEnter last name of insured: ");
+			String lname = scan.next();
+			a1.setLastName(lname);
+			System.out.print("\tEnter make of vehicle: ");
+			String make = scan.next();
+			a1.setMake(make);
+			System.out.print("\tEnter model of vehicle: ");
+			String model = scan.next();
+			a1.setModel(model);
+			System.out.print("\tEnter amount of liability: $");
+			int liab = scan.nextInt();
+			a1.setLiability(liab);
+			System.out.print("\tEnter amount of collision: $");
+			int coll = scan.nextInt();
+			a1.setCollision(coll);	
+		}
+		
+		if (i == 2)
+		{
+			System.out.print("\tEnter first name of insured: ");
+			String fname = scan.next();
+			h1.setFirstName(fname);
+			System.out.print("\tEnter last name of insured: ");
+			String lname = scan.next();
+			h1.setLastName(lname);
+			System.out.print("\tEnter house square footage: ");
+			int foot = scan.nextInt();
+			h1.setFootage(foot);
+			System.out.print("\tEnter amount of dwelling: $");
+			int dwel = scan.nextInt();
+			h1.setDwelling(dwel);
+			System.out.print("\tEnter amount of liability: $");
+			int liab = scan.nextInt();
+			h1.setLiability(liab);
+			System.out.print("\tEnter amount of contents: $");
+			int cont = scan.nextInt();
+			h1.setContents(cont);			
+		}
+		
+		if (i == 3)
+		{
+			System.out.print("\tEnter first name of insured: ");
+			String fname = scan.next();
+			l1.setFirstName(fname);
+			System.out.print("\tEnter last name of insured: ");
+			String lname = scan.next();
+			l1.setLastName(lname);
+			System.out.print("\tEnter age of insured: ");
+			int age = scan.nextInt();
+			l1.setAge(age);
+			System.out.print("\tEnter amount of term: $");
+			int term = scan.nextInt();
+			l1.setTerm(term);			
+		}
+		
+		//display output
+		
+		if (i == 4)
+		{
+			a1.computeCommission();
+			System.out.print(a1);
+		}
+		
+		if (i == 5)
+		{
+			h1.computeCommission();
+			System.out.print(h1);
+		}
+		
+		if (i == 6)
+		{
+			l1.computeCommission();
+			System.out.print(l1);
+		}
+		
+		}
+		
+		scan.close();
+		
+	}
+}

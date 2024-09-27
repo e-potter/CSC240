@@ -1,0 +1,128 @@
+//	Auto.java		Author: Eric R Potter
+//
+//	Creates Auto class.
+
+import java.text.NumberFormat;
+
+public class Auto {
+	
+	private String firstName, lastName, make, model;
+	private double liability, collision, commission;
+	
+	
+	public Auto()
+	{
+		firstName = " ";
+		lastName = " ";
+		make = " ";
+		model = " ";
+		liability = 0;
+		collision = 0;
+		
+	}
+	
+	public Auto(String first, String last, String mk, String md, double l, double c)
+	{
+		firstName = first;
+		lastName = last;
+		make = mk;
+		model = md;
+		liability = l;
+		collision = c;
+		
+	}
+	
+	//setters
+	
+	public void setFirstName(String fn)
+	{
+			firstName = fn;
+	}
+	
+	public void setLastName(String ln)
+	{
+			lastName = ln;
+	}
+	
+	public void setMake(String ma)
+	{
+			make = ma;
+	}
+	
+	public void setModel(String mo)
+	{
+			model = mo;
+	}
+	
+	public void setLiability(double li)
+	{
+			liability = li;
+	}
+	
+	public void setCollision(double co)
+	{
+			collision = co;
+	}
+	
+	
+	
+	//getters
+	
+	public String getFirstName()
+	{
+			return firstName;
+	}
+	
+	public String getLastName()
+	{
+			return lastName;
+	}
+	
+	public String getMake()
+	{
+			return make;
+	}
+	
+	public String getModel()
+	{
+			return model;
+	}
+	
+	public double getLiability()
+	{
+			return liability;
+	}
+	
+	public double getCollision()
+	{
+			return collision;
+	}
+	
+	//tostring
+	
+	public String toString()
+	{
+	String result;
+	
+	NumberFormat fmt1 = NumberFormat.getCurrencyInstance();
+	
+	result = "\n\tAuto Policy" + "\n\t";
+	result += "----------" + "\n\t";
+	result += "Name: " + firstName + " " + lastName + "\n\t";
+	result += "Make: " + make + "\n\t";
+	result += "Model: " + model + "\n\t";
+	result += "Liability: " + fmt1.format(liability) + "\n\t";
+	result += "Collision: " + fmt1.format(collision) + "\n\t";
+	result += "Commission: " + fmt1.format(commission) + "\n";
+	
+	return result;
+	}
+	
+	
+	//commission calculation
+	public void computeCommission()
+	{
+		commission = (liability + collision) * 0.30;
+	}
+	
+}
