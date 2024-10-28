@@ -1,0 +1,10 @@
+//	Priority.java		Author: Eric R Potter
+//
+//	An interface to get/set priority.
+
+public interface Priority {
+
+	public void setPriority(int priority);
+	public int getPriority();
+	
+}

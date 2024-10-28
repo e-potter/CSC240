@@ -1,0 +1,36 @@
+//	Task.java		Author: Eric R Potter
+//
+//	Impements Priority interfacer.
+
+public class Task implements Priority{
+
+	private String task;
+	private int priorityLevel;
+	
+	public Task(String input)
+	{
+		task = input;
+		priorityLevel = 1;
+	}
+
+	public void setPriority(int level)
+	{
+		priorityLevel = level;
+	}
+	
+	public int getPriority()
+	{
+		return priorityLevel;
+	}
+	
+	public String getTask()
+	{
+		return task;
+	}
+	
+	public String toString()
+	{
+		return task;
+	}
+	
+}
