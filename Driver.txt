@@ -1,0 +1,29 @@
+//	Driver.java		Author: Eric R Potter
+//
+//	Driver for Lab 8.
+
+import java.util.Scanner;
+
+public class Driver {
+
+	public static void main(String[] args) 
+	{
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("\nEnter a positive integer as numerator: "); 
+		
+		int inputnum = scan.nextInt();
+		
+		System.out.print("\nEnter a positive integer as denominator: "); 
+		
+		int inputden = scan.nextInt();
+		
+		RationalNumber rn = new RationalNumber(inputnum, inputden);
+		
+		System.out.println(rn);
+		
+		scan.close();
+
+	}
+
+}
