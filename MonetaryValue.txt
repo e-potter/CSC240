@@ -1,0 +1,73 @@
+//	Driver.java		Author: Eric R Potter
+//
+//	Class that determines number of bills and coins for a monetary value.
+
+
+public class MonetaryValue 
+{
+	double amount;
+		
+	public MonetaryValue()
+	{
+		amount = 0;
+	}
+	
+	public MonetaryValue(double value)
+	{
+		amount = value;
+	}
+	
+	public void setAmount(double value)
+	{
+		amount = value;
+	}
+	
+	public double getAmount()
+	{
+		return amount;
+	}
+	
+	public String Calculate()
+	{
+	int amountCents = (int)Math.round(amount*100);
+	
+	int tens = (int) amountCents / 1000;
+	int ptens = (int) amountCents % 1000;
+	
+	int fives = ptens / 500;
+	int pfives = ptens % 500;
+	
+	int ones = pfives / 100;
+	int pones = pfives % 100;
+	
+	int quarters = pones / 25;
+	int pquarters = pones % 25;
+	
+	int dimes = pquarters / 10;
+	int pdimes = pquarters % 10;
+	
+	int nickels = pdimes / 5;
+	
+	int pennies = pdimes % 5;
+	
+	String result = "";
+	
+	if (tens == 1) {result += "\n" + tens + " ten dollar bill";} else {result += "\n" + tens + " ten dollar bills";}
+	if (fives == 1) {result += "\n" + fives + " five dollar bill";} else {result += "\n" + fives + " five dollar bills";}
+	if (ones == 1) {result += "\n" + ones + " one dollar bill";} else {result += "\n" + ones + " one dollar bills";}
+	if (quarters == 1) {result += "\n" + quarters + " quarter";} else {result += "\n" + quarters + " quarters";}
+	if (dimes == 1) {result += "\n" + dimes + " dime";} else {result += "\n" + dimes + " dimes";}
+	if (nickels == 1) {result += "\n" + nickels + " nickel";} else {result += "\n" + nickels + " nickels";}
+	if (pennies == 1) {result += "\n" + pennies + " penny";} else {result += "\n" + pennies + " pennies";}
+	
+	return result;
+	
+	}
+	
+	public String toString()
+	{
+		return "";
+	}
+	
+	
+}

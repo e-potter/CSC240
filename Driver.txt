@@ -1,0 +1,42 @@
+//	Driver.java		Author: Eric R Potter
+//
+//	Driver for Lab 7.
+
+import java.util.Scanner;
+
+public class Driver 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("\nEnter a dollar amount (or \"quit\"): $"); 
+		
+		String input = scan.next();
+		
+		while (!input.equals("quit"))
+		{		
+			try
+			{
+				double value = Double.parseDouble(input);
+				MonetaryValue mv = new MonetaryValue(value);
+				String answer = mv.Calculate();
+				System.out.println(answer);
+			}
+			
+			catch (NumberFormatException exception)
+			{
+				System.out.print("\nImproper format - try again!\n");
+			}
+			
+			System.out.print("\nEnter a dollar amount (or \"quit\"): $"); 
+			input = scan.next();
+			
+		}
+		
+		scan.close();
+		
+	}
+
+}
