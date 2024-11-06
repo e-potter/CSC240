@@ -1,0 +1,32 @@
+//	Driver.java		Author: Eric R Potter
+//
+//	Driver for Lab 6.
+
+import java.util.Scanner;
+
+public class Driver 
+{
+
+	public static void main(String[] args) 
+	{
+		
+		Gradebook gb = new Gradebook();
+		Scanner scan = new Scanner(System.in);
+		
+		for (int i = 0; i < 5; i++)
+		{
+			System.out.print("\tEnter student <firstName> <lastName> <testScore>: "); 
+			Student s = new Student(scan.next(), scan.next(), scan.nextInt());
+		
+			gb.addStudent(s, i);
+		}
+		
+		gb.sortStudents();
+
+		System.out.print(gb);
+
+		scan.close();
+
+	}
+
+}

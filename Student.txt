@@ -1,0 +1,86 @@
+//	Student.java		Author: Eric R Potter
+//
+//	Class that implements Comparable interface.
+
+public class Student implements Comparable<Student> 
+{
+	//variables
+	private String firstName, lastName;
+	private int testScore;
+
+	//constructors
+	public Student()
+	{
+		testScore = 0;
+		firstName = " ";
+		lastName = " ";
+	}
+	
+	public Student(String first, String last)
+	{
+		firstName = first;
+		lastName = last;
+	}
+	
+	public Student(String first, String last, int a)
+	{
+		testScore = a;
+		firstName = first;
+		lastName = last;
+	}
+	
+	//test score comparison
+	public int compareTo (Student other)
+	{
+		Student B = (Student)other;
+		if ( this.testScore < B.getTestScore() )
+			return -1;
+		else if (this.testScore == B.getTestScore() )
+			return 0;
+		else
+			return 1;
+	}
+	
+	//setters
+	public void setTestScore(int a)
+	{
+			testScore = a;
+	}
+	
+	public void setFirstName(String fn)
+	{
+			firstName = fn;
+	}
+	
+	public void setLastName(String ln)
+	{
+			lastName = ln;
+	}
+	
+	//getter
+	public int getTestScore()
+	{
+			return testScore;
+	}
+	
+	public String getFirstName()
+	{
+			return firstName;
+	}
+
+	public String getLastName()
+	{
+			return lastName;
+	}
+	
+	public String toString()
+	{
+		String result;
+		
+		result = "\n" + firstName + " " + lastName + "\t\t" + testScore;
+
+		return result;
+	}
+	
+	
+}

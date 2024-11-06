@@ -1,0 +1,23 @@
+//	Sorting.java		Author: Eric R Potter
+//
+//	Selection Sort program.
+
+public class Sorting 
+{
+	public static void selectionSort (Student[] list)
+	{
+		int min;
+		Student[] temp = new Student[5];
+		
+		for (int index = 0; index <list.length - 1; index++)
+		{
+			min = index;
+			for (int scan = index + 1; scan < list.length; scan++)
+				if (list[scan].compareTo(list[min]) > 0)
+					min = scan;
+			temp[min] = list[min];
+			list[min] = list[index];
+			list[index] = temp[min];
+		}
+	}
+}
