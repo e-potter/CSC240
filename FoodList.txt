@@ -1,0 +1,277 @@
+//	FoodList.java		Author: Eric R Potter
+//
+//	Class of a list of foods.
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Scanner;
+import java.util.Random;
+
+public class FoodList 
+{
+	private FoodNode list;
+	private int count = 0;
+	
+	public FoodList()
+	{
+		list = null;
+	}
+	
+	public void read() throws IOException
+	{
+		// Open file for reading
+		FileReader fr = new FileReader("foods.txt");
+		BufferedReader br = new BufferedReader(fr);
+		
+		// Use a loop to read multiple lines in a file
+		// Each line contains two strings, an integer, a decimal value
+		count = 0;
+		Scanner scan = new Scanner(br);
+		while( scan.hasNext() )
+		{
+			// Read first string
+			String s1 = scan.next();
+			
+			// Read second string
+			String s2 = scan.next();
+			
+			// Read integer
+			int i1 = scan.nextInt();
+			
+			// Read decimal value
+			double d1 = scan.nextDouble();
+			
+			// Create food item
+			Food f = new Food(s1, s2, i1, d1);
+			add(f);
+			
+			// Increment number of lines 
+			count++;	
+		}
+		
+		// Close file stream
+		br.close();
+		
+		// Close scanner
+		scan.close();
+	}
+	
+	public void add(Food fd)
+	{
+		FoodNode node = new FoodNode(fd);
+		FoodNode current;
+		
+		if (list == null)
+			list = node;
+		else
+		{
+			current = list;
+			while (current.next != null)
+				current = current.next;
+			current.next = node;
+		}
+		
+	}
+	
+	public String toString()
+	{
+		String result = "";
+		result += "\n=================================================================";
+		result += "\nName \t Food Group \t Calories \t Daily Percentage";
+		result += "\n=================================================================";
+		result += "\n";
+		
+		FoodNode current = list;
+		
+		while (current != null)
+		{
+			result += current.food + "\n";
+			current = current.next;
+		}
+		
+		return result;
+	}
+	
+	private class FoodNode
+	{
+		public Food food;
+		public FoodNode next;
+		
+		public FoodNode(Food fd)
+		{
+			food = fd;
+			next = null;
+		}
+		
+	}
+	
+	public FoodNode find(String name)
+	{
+		FoodNode tmp;
+		for(tmp = list; tmp != null; tmp = tmp.next)
+		{
+			if( tmp.food.getName().equals(name) )
+				return tmp;
+		}
+		return null;
+	}
+	
+	public String createMeal()
+	{
+		int totalcalories;
+		double totalpercentage;
+		String f1 = "";
+		String f2 = "";
+		String f3 = "";
+		
+		FoodNode food1 = null;
+		FoodNode food2 = null;
+		FoodNode food3 = null;
+		
+		Scanner scan2 = new Scanner(System.in);
+		
+			while (food1 == null)
+			{
+				System.out.print("Enter food name: ");
+				f1 = scan2.next();
+				food1 = find(f1);
+				if (food1 == null)
+					System.out.print(f1 + " is not in the database, try again\n");
+			}
+			while (food2 == null)
+			{
+				System.out.print("Enter food name: ");
+				f2 = scan2.next();
+				food2 = find(f2);
+				if (food2 == null)
+					System.out.print(f2 + " is not in the database, try again\n");
+			}
+			while (food3 == null)
+			{
+				System.out.print("Enter food name: ");
+				f3 = scan2.next();
+				food3 = find(f3);
+				if (food3 == null)
+					System.out.print(f3 + " is not in the database, try again\n");
+			}
+			
+			totalcalories = food1.food.getCalories() + food2.food.getCalories() + food3.food.getCalories();
+			totalpercentage = food1.food.getPercent() + food2.food.getPercent() + food3.food.getPercent();
+		
+		
+		
+		NumberFormat fmt1 = NumberFormat.getPercentInstance();
+		
+		String result = "";
+		result += "\n=============================";
+		result += "\nYour selected meal";
+		result += "\nFoods: " + f1 + " " + f2 + " " + f3;
+		result += "\nTotal calorie count: " + totalcalories;
+		result += "\nTotal daily percentage: " + fmt1.format(totalpercentage);
+		result += "\n=============================";
+		
+		return result;
+		
+		
+	}
+	
+	public String randomMeal()
+	{
+		int totalcalories;
+		double totalpercentage;
+
+		FoodNode food1 = null;
+		FoodNode food2 = null;
+		FoodNode food3 = null;
+		
+		Random rand = new Random();
+		int num1 = rand.nextInt(count-1);
+		int num2 = rand.nextInt(count-1);
+		int num3 = rand.nextInt(count-1);
+		
+		FoodNode temp1 = list;
+		int i = 0;
+		while (temp1 != null)
+		{
+			if (i == num1)
+			{
+				food1 = temp1;
+				break;
+			}
+			i++;
+			temp1 = temp1.next;
+		}
+		
+		FoodNode temp2 = list;
+		i = 0;
+		while (temp2 != null)
+		{
+			if (i == num2)
+			{
+				food2 = temp2;
+				break;
+			}
+			i++;
+			temp2 = temp2.next;
+		}
+		
+		FoodNode temp3 = list;
+		i = 0;
+		while (temp3 != null)
+		{
+			if (i == num3)
+			{
+				food3 = temp3;
+				break;
+			}
+			i++;
+			temp3 = temp3.next;
+		}
+			
+		totalcalories = food1.food.getCalories() + food2.food.getCalories() + food3.food.getCalories();
+		totalpercentage = food1.food.getPercent() + food2.food.getPercent() + food3.food.getPercent();
+		
+		NumberFormat fmt1 = NumberFormat.getPercentInstance();
+		
+		String result = "";
+		result += "\n=============================";
+		result += "\nYour selected meal";
+		result += "\nFoods: " + food1.food.getName() + " " + food2.food.getName() + " " + food3.food.getName();
+		result += "\nTotal calorie count: " + totalcalories;
+		result += "\nTotal daily percentage: " + fmt1.format(totalpercentage);
+		result += "\n=============================";
+		
+		return result;
+	}
+	
+	public void removeFoods(FoodList list, int cl)
+	{
+		int cal_limit = cl;
+		FoodNode head = this.list;
+		
+		while (head != null && head.food.getCalories() > cal_limit)
+		{	
+				head = head.next;
+		}
+		
+		FoodNode current = head;
+		
+		while (current != null && current.next != null)
+		{
+			if (current.next.food.getCalories() > cal_limit)
+			{
+				current.next = current.next.next;
+			}
+			else
+			{
+				current = current.next;
+			}
+		}
+		
+				
+	}
+
+}

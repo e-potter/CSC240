@@ -1,0 +1,64 @@
+//	Driver.java		Author: Eric R Potter
+//
+//	Driver for Lab 9.
+
+import java.util.Scanner;
+import java.io.IOException;
+
+public class Driver 
+{
+
+	public static void main(String[] args) 
+	{
+		try
+		{
+			FoodList list = new FoodList();
+			
+			list.read();
+			
+			System.out.println("---------------------------------");
+			System.out.println("Welcome to Parkland Meal Selector");
+			System.out.println("---------------------------------");
+			System.out.println("Please select from the following:");
+			System.out.println("1 - List food database");
+			System.out.println("2 - Create meal by manual selection");
+			System.out.println("3 - Create meal by random selection");
+			System.out.println("4 - Remove food high in calories");
+			System.out.println("5 - Exit");
+			
+			boolean done = false;
+			Scanner input = new Scanner(System.in);
+			while (!done)
+			{
+				switch (input.nextInt())
+				{
+				case 1:
+					System.out.println(list);
+					break;
+				case 2:
+					System.out.println(list.createMeal());
+					break;
+				case 3:
+					System.out.println(list.randomMeal());
+					break;
+				case 4:
+					Scanner inputLimit = new Scanner(System.in);
+					System.out.print("Enter calorie limit: ");
+					list.removeFoods(list, inputLimit.nextInt());
+					inputLimit.close();
+					break;
+				case 5:
+					done = true;
+					break;
+				}
+			}
+			input.close();
+		}
+		catch(Exception e)
+		{
+			System.err.println("CAUGHT I/O EXCEPTION: " + e.getMessage());
+		}
+
+	}
+
+}
