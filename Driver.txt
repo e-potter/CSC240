@@ -44,8 +44,8 @@ public class Driver
 				case 4:
 					Scanner inputLimit = new Scanner(System.in);
 					System.out.print("Enter calorie limit: ");
-					list.removeFoods(list, inputLimit.nextInt());
-					inputLimit.close();
+					list.removeFoods(inputLimit.nextInt());
+					//inputLimit.close();
 					break;
 				case 5:
 					done = true;

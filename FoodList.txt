@@ -247,17 +247,16 @@ public class FoodList
 		return result;
 	}
 	
-	public void removeFoods(FoodList list, int cl)
+	public void removeFoods(int cl)
 	{
 		int cal_limit = cl;
-		FoodNode head = this.list;
 		
-		while (head != null && head.food.getCalories() > cal_limit)
+		while (this.list != null && this.list.food.getCalories() > cal_limit)
 		{	
-				head = head.next;
+				this.list = this.list.next;
 		}
 		
-		FoodNode current = head;
+		FoodNode current = this.list;
 		
 		while (current != null && current.next != null)
 		{
@@ -270,7 +269,6 @@ public class FoodList
 				current = current.next;
 			}
 		}
-		
 				
 	}
 
